@@ -1,0 +1,26 @@
+# $ /c/bin/bazelisk.exe --bazelrc ./tools/bazelrc.windows run  ///cpp:hello --sandbox_debug --verbose_failures --compiler clang-cl --noforce_pic --action_env=USE_CLANG_CL
+
+startup --output_user_root=c:/tmp
+startup --windows_enable_symlinks
+
+build --action_env=USE_CLANG_CL
+build --action_env=BAZEL_SH
+build --action_env=BAZEL_LLVM
+build --enable_runfiles
+
+build -c opt
+
+build --noforce_pic
+build --python_path=python3
+build --host_force_python=PY3
+build --python_version=PY3
+build --symlink_prefix=dist/
+
+test --test_output=errors
+test --test_summary=terse
+test --python_path=python3
+test --host_force_python=PY3
+test --python_version=PY3
+
+build --strategy=TypeScriptCompile=worker
+build --symlink_prefix=dist/

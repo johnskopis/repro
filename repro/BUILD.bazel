@@ -1,0 +1,16 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_binary(
+    name = "repro",
+    embed = [":repro_lib"],
+    importpath = "github.com/johnskopis/repro/repro",
+    visibility = ["//visibility:public"],
+)
+
+go_library(
+    name = "repro_lib",
+    srcs = ["repro.go"],
+    importpath = "github.com/johnskopis/repro/repro",
+    visibility = ["//visibility:private"],
+    deps = ["//vendor/github.com/mattn/go-sqlite3"],
+)
